@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Training Log</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/training_log_app.css">
+  </head>
+
+  <body>
+    <header>
+      <h1>Training Log</h1>
+    </header>
+
+    <% if session[:message] %>
+      <div id="flash">
+        <p><%= session.delete(:message) %></p>
+      </div>
+    <% end %>
+
+    <main>
+      <%== yield %>
+    </main>
+  </body>
+</html>
