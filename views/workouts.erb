@@ -1,59 +1,59 @@
-<ul aria-label="User Options:"> 
-  <li>
-    <form action="/logout" method="post">
-      <button type="submit">Logout of <%= session[:username] %> Account </button>
-    </form>
-  </li>
-  <li>
-    <form action="/delete_account" method="post">
-      <button type="submit">Delete Account</button>
-    </form>
-  </li>
-  <li>
-    <form action="/training_log/<%= @page_number %>/workouts/new" method="get">
-      <button type="submit">Log a New Workout</button>
-    </form>
-  </li>
-</ul>
+<div class="box">
+  <div class="details">
+    <div class="topbar">
+      <form action="/training_log/<%= @page_number %>/workouts/new" method="get">
+        <button class="button" type="submit">
+          <i class="fa fa-plus" aria-hidden="true"><b>Add Workout</b></i>
+        </button>
+      </form>
+    </div>
+    <div border="2px">
+      <table align="center">
+        <thead>
+          <h2>Current Entries:</h2>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Type of Workout:</b></td>
+            <td><b>Date of Workout</b></td>
+            <td><b>User:</b></td>
+            <td><b>More Information:</b></td>
+          </tr>
+          <% @workouts.each do |workout| %>
+            <tr>
+              <td><%= workout[:name] %></td>
+              <td><%= workout[:date] %></td>
+              <td><%= workout[:username] %></td>
+              <td>
+                <a href="/training_log/<%= @page_number %>/workouts/<%= workout[:id] %>">
+                  <i class="fa fa-search" aria-hidden="true"></i>Details
+                </a>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="4">Current Entries:</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="tbl_column_titles">
-      <td>Type of Workout:</td>
-      <td>Date of Workout:</td>
-      <td>User:</td>
-      <td>More Information:</td>
-    </tr>
-    <% @workouts.each do |workout| %>
-      <tr>
-        <td><%= workout[:name] %></td>
-        <td><%= workout[:date] %></td>
-        <td><%= workout[:username] %></td>
-        <td>
-          <a href="/training_log/<%= @page_number %>/workouts/<%= workout[:id] %>">
-            View Workout
-          </a>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="bottom-bar">
+      <form action="/training_log/<%= prior_page_num(@page_number) %>/workouts" method="get">
+        <button class="bottom-button" type="submit">
+          <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+        </button>
+      </form>
+      <form action="/training_log/<%= @page_number %>/workouts" method="get">
+        <button class="bottom-button" type="submit">
+          <i class="fa fa-file-text-o fa-2x" aria-hidden="true">
+            <b>Page: <%= @page_number %> / <%= max_number_pages %></b>
+          </i>
+        </button>
+      </form>
+      <form action="/training_log/<%= next_page_num(@page_number) %>/workouts" method="get">
+        <button class="bottom-button" type="submit">
+          <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
 
-<div class="same_row">
-  <form action="/training_log/<%= prior_page_num(@page_number) %>/workouts" method="get">
-    <button type="submit">Prior Page</button>
-  </form>
-</div>
-<div class="same_row">
-  Page: <%= @page_number %> / <%= max_number_pages %>
-</div>
-<div class="same_row">
-  <form action="/training_log/<%= next_page_num(@page_number) %>/workouts" method="get">
-    <button type="submit">Next Page</button>
-  </form>
+  </div>
 </div>
