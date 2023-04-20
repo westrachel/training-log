@@ -1,17 +1,19 @@
-<form action="/signup" method="post">
-  <div>
-    <label for="username">Enter a Username:
-      <input name="username" id="username" value="<%= params[:username]%>"/>
-    </label>
-  </div>
-  <div>
-    <label for="password">Enter a Password:
-      <input name="password" id="password" type="password"/>
-    </label>
-  </div>
-  <button type="submit">Signup</button>
-</form>
-
-<form action="/login" method="get">
-  <button type="submit">Already Have An Account? Login Here</button>
-</form>
+<div class="credentials">
+  <form action="/signup" method="post">
+    <div>
+      <label for="username">Enter a Username:
+        <input name="username" id="username" value="<%= params[:username]%>"/>
+      </label>
+    </div>
+    <div>
+      <label for="password">Enter a Password:
+        <input name="password" id="password" type="password"/>
+      </label>
+    </div>
+    <button class="enter" type="submit">Signup</button>
+  </form>
+  
+  <form action="/login" method="get">
+    <button class="enter" type="submit">Already Have An Account? Login Here</button>
+  </form>
+</div>
